@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { FaEnvelope, FaLock, FaArrowRight } from 'react-icons/fa'
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useRouter } from 'next/navigation';
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -10,9 +11,9 @@ const Login = () => {
     password: "",
     rememberMe: false,
   });
-
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -54,19 +55,31 @@ const Login = () => {
     setIsLoading(true);
 
     try {
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-
-      console.log("Login data:", formData);
-      toast.success("Logged in successfully!");
-
-      setFormData({
-        email: "",
-        password: "",
-        rememberMe: false,
+      const response = await fetch("http://localhost:3001/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: formData.email,
+          password: formData.password,
+        }),
       });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        toast.success("Logged in successfully!");
+        setFormData({
+          email: "",
+          password: "",
+          rememberMe: false,
+        });
+        // Redirect or store token here
+      router.push('/dashboard');
+      } else {
+        setError(data.error || "Invalid email or password.");
+      }
     } catch (err) {
-      setError("Invalid email or password. Please try again.");
+      setError("Server error. Please try again.");
     } finally {
       setIsLoading(false);
     }

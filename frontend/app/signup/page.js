@@ -55,19 +55,27 @@ const Signup = () => {
 
     setError("");
 
-    // Simulate registration success (replace with actual API call)
-    console.log(formData);
-
-    toast.success("Registered successfully!");
-
-    setFormData({
-      name: "",
-      email: "",
-      password: "",
-      confPassword: "",
+    const response = await fetch('http://localhost:3001/api/auth/register', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData),
     });
-    setIsSubmitting(false);
 
+    const data = await response.json();
+    console.log(data);
+    
+    if (response.ok) {
+      toast.success("Registered successfully!");
+      setFormData({
+        name: "",
+        email: "",
+        password: "",
+        confPassword: "",
+      });
+    } else {
+      setError(data.error || 'Signup failed');
+    }
+    setIsSubmitting(false);
   };
 
   return (
