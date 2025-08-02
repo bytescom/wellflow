@@ -1,2 +1,0 @@
-# wellflow
- Wellness Session Platform
