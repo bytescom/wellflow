@@ -42,8 +42,8 @@ const Signup = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (isSubmitting) return;
 
+    if (isSubmitting) return;
     setIsSubmitting(true);
 
     const validationError = validateForm();
@@ -55,27 +55,34 @@ const Signup = () => {
 
     setError("");
 
-    const response = await fetch('http://localhost:3001/api/auth/register', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(formData),
-    });
-
-    const data = await response.json();
-    console.log(data);
-    
-    if (response.ok) {
-      toast.success("Registered successfully!");
-      setFormData({
-        name: "",
-        email: "",
-        password: "",
-        confPassword: "",
+    try {
+      const response = await fetch('http://localhost:3001/api/auth/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
       });
-    } else {
-      setError(data.error || 'Signup failed');
+
+      const data = await response.json();
+      console.log(data);
+
+      if (response.ok) {
+        toast.success("Registered successfully!");
+        setFormData({
+          name: "",
+          email: "",
+          password: "",
+          confPassword: "",
+        });
+      } else {
+        setError(data.error || 'Signup failed');
+      }
+    } catch (error) {
+      console.error(error);
+    }finally{
+
+      setIsSubmitting(false);
     }
-    setIsSubmitting(false);
+
   };
 
   return (

@@ -23,6 +23,10 @@ const Navbar = () => {
                     How it Works
                 </a>
 
+                <Link href="/dashboard" className="text-sm font-medium text-gray-600 hover:text-gray-900">
+                    Dashboard
+                </Link>
+
                 <Link href="/login" className="text-sm font-medium text-gray-600 hover:text-gray-900">
                     Login
                 </Link>

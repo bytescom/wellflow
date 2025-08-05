@@ -74,7 +74,7 @@ const Login = () => {
           rememberMe: false,
         });
         // Redirect or store token here
-      router.push('/dashboard');
+      // router.push('/dashboard');
       } else {
         setError(data.error || "Invalid email or password.");
       }
