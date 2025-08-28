@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -26,53 +26,7 @@ const MySession = () => {
     json_file_url: sessionData.json_file_url
   }) !== JSON.stringify(lastSavedData.current);
 
-  useEffect(() => {
-    if (autoSaveTimer.current) clearTimeout(autoSaveTimer.current);
-
-    if (hasUnsavedChanges && !isSubmitting && !saveInProgress.current) {
-      autoSaveTimer.current = setTimeout(() => {
-        handleSave('draft', true);
-      }, 30000); // 30s
-    }
-
-    return () => clearTimeout(autoSaveTimer.current);
-  }, [sessionData, isSubmitting]);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setSessionData(prev => ({ ...prev, [name]: value }));
-  };
-
-  const handleAddTag = (e) => {
-    e.preventDefault();
-    const tag = tagInput.trim().replace(/^#/, '');
-    if (tag && !sessionData.tags.includes(tag)) {
-      setSessionData(prev => ({ ...prev, tags: [...prev.tags, tag] }));
-      setTagInput('');
-    }
-  };
-
-  const handleRemoveTag = (tag) => {
-    setSessionData(prev => ({ ...prev, tags: prev.tags.filter(t => t !== tag) }));
-  };
-
-  const handleSaveDraft = async () => {
-    // Prevent multiple clicks
-    if (isDraftSaving || saveInProgress.current) {
-      return;
-    }
-    await handleSave('draft', false);
-  };
-
-  const handlePublish = async () => {
-    // Prevent multiple clicks
-    if (isPublishing || saveInProgress.current || !sessionData.title) {
-      return;
-    }
-    await handleSave('published', false);
-  };
-
-  const handleSave = async (status, isAutoSave = false) => {
+  const handleSave = useCallback(async (status, isAutoSave = false) => {
     // Double check to prevent race conditions
     if (saveInProgress.current || (isAutoSave && !hasUnsavedChanges)) {
       return;
@@ -136,6 +90,52 @@ const MySession = () => {
       setIsPublishing(false);
       saveInProgress.current = false;
     }
+  }, [sessionData, hasUnsavedChanges]);
+
+  useEffect(() => {
+    if (autoSaveTimer.current) clearTimeout(autoSaveTimer.current);
+
+    if (hasUnsavedChanges && !isSubmitting && !saveInProgress.current) {
+      autoSaveTimer.current = setTimeout(() => {
+        handleSave('draft', true);
+      }, 30000); // 30s
+    }
+
+    return () => clearTimeout(autoSaveTimer.current);
+  }, [sessionData, isSubmitting, handleSave, hasUnsavedChanges]);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setSessionData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleAddTag = (e) => {
+    e.preventDefault();
+    const tag = tagInput.trim().replace(/^#/, '');
+    if (tag && !sessionData.tags.includes(tag)) {
+      setSessionData(prev => ({ ...prev, tags: [...prev.tags, tag] }));
+      setTagInput('');
+    }
+  };
+
+  const handleRemoveTag = (tag) => {
+    setSessionData(prev => ({ ...prev, tags: prev.tags.filter(t => t !== tag) }));
+  };
+
+  const handleSaveDraft = async () => {
+    // Prevent multiple clicks
+    if (isDraftSaving || saveInProgress.current) {
+      return;
+    }
+    await handleSave('draft', false);
+  };
+
+  const handlePublish = async () => {
+    // Prevent multiple clicks
+    if (isPublishing || saveInProgress.current || !sessionData.title) {
+      return;
+    }
+    await handleSave('published', false);
   };
 
   return (

@@ -190,7 +190,7 @@ const Login = () => {
         <div className="my-8 border-t border-gray-200"></div>
         <div className="text-center">
           <p className="text-sm text-gray-600">
-            Don't have an account?{' '}
+            Don&apos;t have an account?{' '}
             <a href="/signup" className="font-medium text-emerald-600 hover:text-emerald-500 transition-colors">
               Sign up
             </a>
