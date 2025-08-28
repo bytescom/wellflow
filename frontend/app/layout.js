@@ -1,22 +1,31 @@
-import { Poppins } from "next/font/google";
+import { Oswald, Poppins } from "next/font/google";
 import "./globals.css";
 
-const poppins = Poppins({
+export const poppins = Poppins({
   subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700'],
   variable: '--font-poppins',
-})
+  weight: ['400', '600', '700'], // Add other weights if needed
+  display: 'swap',
+});
+
+export const oswald = Oswald({
+  subsets: ['latin'],
+  variable: '--font-oswald',
+  weight: ['400', '500', '700'], // Add other weights if needed
+  display: 'swap',
+});
+
 
 export const metadata = {
-  title: "WellFlow - Secure Wellness Session",
-  description: "A secure wellness session platform with user authentication, draft saving, and auto-save features. Create and share yoga, meditation, and fitness routines safely—protect your content and never lose progress. Start designing seamless wellness experiences today",
+  title: "Wellflow - Wellness Session Platform",
+  description: "Wellness Session Platform",
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${poppins.variable} font-poppins antialiased`}
+        className={`${poppins.variable} antialiased`}
       >
         {children}
       </body>

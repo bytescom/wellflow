@@ -1,46 +1,50 @@
+"use client"
 import React from 'react'
 import { PiSparkleFill } from "react-icons/pi"
 import { FaHeart, FaArrowRight, FaBolt, FaCheckCircle, FaUsers } from 'react-icons/fa'
+import { useScrollAnimation } from './useScrollAnimation'
 
 const Features = () => {
+    useScrollAnimation()
+
     return (
-        <section id="features" className="py-24 lg:py-32 bg-white relative overflow-hidden">
-            <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
-                <div className="text-center space-y-6 mb-20">
-                    <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-emerald-100 to-teal-100 border border-emerald-200 rounded-full text-sm font-medium text-emerald-700 mb-4">
+        <section id="features" className="py-16 sm:py-24 lg:py-32 bg-white relative overflow-hidden">
+            <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="text-center space-y-4 sm:space-y-6 mb-16 sm:mb-20">
+                    <div className="scroll-animate inline-flex items-center gap-2 px-3 sm:px-4 py-2 bg-gradient-to-r from-emerald-100 to-teal-100 border border-emerald-200 rounded-full text-sm font-medium text-emerald-700 mb-4">
                         <PiSparkleFill className="h-4 w-4" />
                         Powerful Features
                     </div>
-                    <h2 className="text-4xl lg:text-6xl font-bold tracking-tight text-gray-900 leading-tight">
+                    <h2 className="scroll-animate scroll-animate-delay-1 text-3xl sm:text-4xl lg:text-6xl font-bold tracking-tight text-gray-900 leading-tight">
                         Everything You Need for
                         <span className="block bg-gradient-to-r from-emerald-600 via-teal-600 to-blue-600 bg-clip-text text-transparent">
                             Wellness Creation
                         </span>
                     </h2>
-                    <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                    <p className="scroll-animate scroll-animate-delay-2 text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
                         Professional-grade tools designed to help you create, manage, and share transformative wellness
                         experiences with a thriving global community.
                     </p>
                 </div>
 
-                <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-12">
                     {/* Feature 1 - Session Builder */}
-                    <div className="group relative flex-1 min-w-0">
-                        <div className="relative border-0 shadow-xl shadow-gray-900/5 hover:shadow-2xl hover:shadow-emerald-500/10 transition-all duration-500 hover:-translate-y-2 bg-white/80 backdrop-blur-sm overflow-hidden group rounded-2xl flex flex-col justify-between px-8 py-10 h-[34rem] w-[23rem]">
+                    <div className="scroll-animate scroll-animate-delay-3 group relative flex-1 min-w-0">
+                        <div className="relative border-0 shadow-xl shadow-gray-900/5 hover:shadow-2xl hover:shadow-emerald-500/10 transition-all duration-500 hover:-translate-y-2 bg-white/80 backdrop-blur-sm overflow-hidden group rounded-2xl flex flex-col justify-between px-4 sm:px-8 py-8 sm:py-10 h-auto sm:h-[34rem] w-full sm:w-[23rem]">
                             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-emerald-500 to-teal-500" />
                             <div className="flex flex-col justify-between">
                                 <div className="relative mb-6">
-                                    <div className="w-16 h-16 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-3xl flex items-center justify-center mb-4 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-lg shadow-emerald-500/25">
-                                        <FaHeart className="h-8 w-8 text-white" />
+                                    <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-3xl flex items-center justify-center mb-4 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-lg shadow-emerald-500/25">
+                                        <FaHeart className="h-8 w-8 sm:h-10 sm:w-10 text-white" />
                                     </div>
                                     <div className="absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 delay-100">
                                         <PiSparkleFill className="h-3 w-3 text-white" />
                                     </div>
                                 </div>
-                                <h3 className="text-2xl font-bold text-gray-900 mb-4 group-hover:text-emerald-600 transition-colors">
+                                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 group-hover:text-emerald-600 transition-colors">
                                     AI-Powered Session Builder
                                 </h3>
-                                <p className="text-gray-600 leading-relaxed text-base mb-6">
+                                <p className="text-gray-600 leading-relaxed text-sm sm:text-base mb-6">
                                     Create detailed yoga routines, meditation scripts, and breathing exercises with our intelligent
                                     drag-and-drop editor, smart templates, and AI-powered suggestions.
                                 </p>
@@ -69,22 +73,22 @@ const Features = () => {
                     </div>
 
                     {/* Feature 2 - Auto-Save */}
-                    <div className="group relative flex-1 min-w-0">
-                        <div className="relative border-0 shadow-xl shadow-gray-900/5 hover:shadow-2xl hover:shadow-blue-500/10 transition-all duration-500 hover:-translate-y-2 bg-white/80 backdrop-blur-sm overflow-hidden group rounded-2xl flex flex-col justify-between px-8 py-10 h-[34rem] w-[23rem]">
+                    <div className="scroll-animate scroll-animate-delay-4 group relative flex-1 min-w-0">
+                        <div className="relative border-0 shadow-xl shadow-gray-900/5 hover:shadow-2xl hover:shadow-blue-500/10 transition-all duration-500 hover:-translate-y-2 bg-white/80 backdrop-blur-sm overflow-hidden group rounded-2xl flex flex-col justify-between px-4 sm:px-8 py-8 sm:py-10 h-auto sm:h-[34rem] w-full sm:w-[23rem]">
                             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-indigo-500" />
                             <div >
                                 <div className="relative mb-6">
-                                    <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-3xl flex items-center justify-center mb-4 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-lg shadow-blue-500/25">
-                                        <FaBolt className="h-8 w-8 text-white" />
+                                    <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-3xl flex items-center justify-center mb-4 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-lg shadow-blue-500/25">
+                                        <FaBolt className="h-8 w-8 sm:h-10 sm:w-10 text-white" />
                                     </div>
                                     <div className="absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 delay-100">
                                         <FaCheckCircle className="h-3 w-3 text-white" />
                                     </div>
                                 </div>
-                                <h3 className="text-2xl font-bold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors">
+                                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors">
                                     Smart Auto-Save & Sync
                                 </h3>
-                                <p className="text-gray-600 leading-relaxed text-base mb-6">
+                                <p className="text-gray-600 leading-relaxed text-sm sm:text-base mb-6">
                                     Never lose your work with intelligent auto-saving, real-time collaboration, version history, seamless sync across all your devices, offline access, cloud backup, instant updates, and mobile compatibility.
                                 </p>
                             </div>
@@ -112,22 +116,22 @@ const Features = () => {
                     </div>
 
                     {/* Feature 3 - Community */}
-                    <div className="group relative flex-1 min-w-0">
-                        <div className="relative border-0 shadow-xl shadow-gray-900/5 hover:shadow-2xl hover:shadow-purple-500/10 transition-all duration-500 hover:-translate-y-2 bg-white/80 backdrop-blur-sm overflow-hidden group rounded-2xl flex flex-col justify-between px-8 py-10 h-[34rem] w-[23rem]">
+                    <div className="scroll-animate scroll-animate-delay-5 group relative flex-1 min-w-0 md:col-span-2 lg:col-span-1">
+                        <div className="relative border-0 shadow-xl shadow-gray-900/5 hover:shadow-2xl hover:shadow-purple-500/10 transition-all duration-500 hover:-translate-y-2 bg-white/80 backdrop-blur-sm overflow-hidden group rounded-2xl flex flex-col justify-between px-4 sm:px-8 py-8 sm:py-10 h-auto sm:h-[34rem] w-full sm:w-[23rem]">
                             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-purple-500 to-pink-500" />
                             <div>
                                 <div className="relative mb-6">
-                                    <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-600 rounded-3xl flex items-center justify-center mb-4 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-lg shadow-purple-500/25">
-                                        <FaUsers className="h-8 w-8 text-white" />
+                                    <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-purple-500 to-pink-600 rounded-3xl flex items-center justify-center mb-4 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-lg shadow-purple-500/25">
+                                        <FaUsers className="h-8 w-8 sm:h-10 sm:w-10 text-white" />
                                     </div>
                                     <div className="absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-br from-red-400 to-pink-500 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 delay-100">
                                         <FaHeart className="h-3 w-3 text-white" />
                                     </div>
                                 </div>
-                                <h3 className="text-2xl font-bold text-gray-900 mb-4 group-hover:text-purple-600 transition-colors">
+                                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 group-hover:text-purple-600 transition-colors">
                                     Global Community Hub
                                 </h3>
-                                <p className="text-gray-600 leading-relaxed text-base mb-6">
+                                <p className="text-gray-600 leading-relaxed text-sm sm:text-base mb-6">
                                     Connect with a vibrant wellness community, share your sessions, discover transformative practices, and collaborate with creators worldwide for growth, support, and inspiration.
                                 </p>
                             </div>

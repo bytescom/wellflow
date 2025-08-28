@@ -6,8 +6,11 @@ import Features from "@/components/Features"
 import HowItWorks from "@/components/HowItWorks"
 import Footer from "@/components/Footer"
 import CTA from "@/components/CTA"
+import { useScrollAnimation } from "@/components/useScrollAnimation"
 
 export default function Home() {
+  useScrollAnimation()
+
   return (
     <div className="flex flex-col min-h-screen bg-white">
       {/* Header */}
@@ -18,7 +21,7 @@ export default function Home() {
 
         <Features />
 
-        <section id="session-type" className="py-24 lg:py-32 bg-gray-50">
+        <section id="session-type" className="py-16 sm:py-24 lg:py-32 bg-gray-50">
           <SessionType />
         </section>
 
